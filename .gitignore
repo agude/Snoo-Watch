@@ -1,0 +1,244 @@
+# Secrets file
+secret.py*
+
+# Network File System
+.nfs*
+
+# Github ignore lists from: https://github.com/github/gitignore
+# Available under the MIT license (https://github.com/github/gitignore)
+
+# Github Archives Ignore List
+## It's better to unpack these files and commit the raw source because
+## git has its own built in compression methods.
+*.7z
+*.jar
+*.rar
+*.zip
+*.gz
+*.bzip
+*.bz2
+*.xz
+*.lzma
+*.cab
+
+## Packing-only formats
+*.iso
+*.tar
+
+## Package management formats
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm
+*.msi
+*.msm
+*.msp
+
+# Github CVS Ignore List
+/CVS/*
+*/CVS/*
+.cvsignore
+*/.cvsignore
+
+# Github Linux Ignore List
+*~
+
+## KDE directory preferences
+.directory
+
+# Github SVN Ignore List
+.svn/
+
+# Github Tags Ignore List
+## Ignore tags created by etags, ctags, gtags (GNU global) and cscope
+TAGS
+!TAGS/
+tags
+!tags/
+gtags.files
+GTAGS
+GRTAGS
+GPATH
+cscope.files
+cscope.out
+cscope.in.out
+cscope.po.out
+
+# Github vim Ignore List
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# Github C++ Ignore List
+## Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+## Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+## Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+## Executables
+*.exe
+*.out
+*.app
+
+# Github Python Ignore List
+## Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+## C extensions
+*.so
+
+## Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+## Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+## Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+## Translations
+*.mo
+*.pot
+
+## Django stuff:
+*.log
+
+## Sphinx documentation
+docs/_build/
+
+# Github TeX Ignore List
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+
+## Intermediate documents:
+*.dvi
+## these rules might exclude image files for figures etc.
+# *.ps
+# *.eps
+# *.pdf
+
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+## Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+## Auxiliary and intermediate files from other packages:
+
+## Algorithms
+*.alg
+*.loa
+
+## Amsthm
+*.thm
+
+## Beamer
+*.nav
+*.snm
+*.vrb
+
+##(e)ledmac/(e)ledpar
+*.end
+*.[1-9]
+*.[1-9][0-9]
+*.[1-9][0-9][0-9]
+*.[1-9]R
+*.[1-9][0-9]R
+*.[1-9][0-9][0-9]R
+
+## Glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+
+## Hyperref
+*.brf
+
+## Listings
+*.lol
+
+## Makeidx
+*.idx
+*.ilg
+*.ind
+*.ist
+
+## Minitoc
+*.maf
+*.mtc
+*.mtc0
+
+## Minted
+*.pyg
+
+## Nomencl
+*.nlo
+
+## Sagetex
+*.sagetex.sage
+*.sagetex.py
+*.sagetex.scmd
+
+## Sympy
+*.sout
+*.sympy
+sympy-plots-for-*.tex/
+
+## Todonotes
+*.tdo
+
+## Xindy
+*.xdy
