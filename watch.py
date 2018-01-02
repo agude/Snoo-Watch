@@ -12,14 +12,15 @@ from secret import APP_ID, SECRET, USER_AGENT
 def setup_database(database_file):
     POSTS_TABLE = """
 CREATE TABLE IF NOT EXISTS posts (
-id text PRIMARY KEY
+    id text PRIMARY KEY
 );
     """
 
     USER_TABLE = """
 CREATE TABLE IF NOT EXISTS users (
-name text PRIMARY KEY,
-seen integer NOT NULL
+    name text PRIMARY KEY,
+    post_count integer NOT NULL,
+    last_seen integer NOT NULL
 );
     """
 
@@ -53,16 +54,23 @@ def insert_post(post_id, cursor):
     cursor.execute(INSERT_SUBMISSION_TEMPLATE.format(id=post_id))
 
 
-def insert_new_user(name, cursor):
+def insert_new_user(name, time, cursor):
     logging.debug("Inserting new user with name '%s'", name)
-    INSERT_NEW_USER_TEMPLATE = 'INSERT INTO users (name, seen) VALUES ("{name}", 1);'
-    cursor.execute(INSERT_NEW_USER_TEMPLATE.format(name=name))
+    INSERT_NEW_USER_TEMPLATE = 'INSERT INTO users (name, post_count, last_seen) VALUES ("{name}", 1, "{time}");'
+    cursor.execute(INSERT_NEW_USER_TEMPLATE.format(name=name, time=time))
 
 
-def update_user(name, cursor):
+def update_user(name, time, cursor):
     logging.debug("Updating existing user with name '%s'", name)
-    UPDATE_USER_TEMPLATE = 'UPDATE users SET seen = seen + 1 WHERE name="{name}";'
+    UPDATE_USER_TEMPLATE = 'UPDATE users SET post_count = post_count + 1, last_seen={time} WHERE name="{name}";'
+    cursor.execute(UPDATE_USER_TEMPLATE.format(name=name, time=time))
+
+
+def get_last_seen(name, cursor):
+    logging.debug("Getting last seen time for user with name '%s'", name)
+    UPDATE_USER_TEMPLATE = 'SELECT last_seen FROM users WHERE name="{name}";'
     cursor.execute(UPDATE_USER_TEMPLATE.format(name=name))
+    return cursor.fetchone()[0]
 
 
 def extract_commenters(subreddit, time_aggregate, cursor):
@@ -96,12 +104,14 @@ def extract_commenters(subreddit, time_aggregate, cursor):
                 continue
 
             name = redditor.name
+            time = int(comment.created_utc)
 
             # Add the user to the database
             if user_exists(redditor.name, cursor):
-                update_user(name, cursor)
+                last_time = get_last_seen(name, cursor)
+                update_user(name, max(time, last_time), cursor)
             else:
-                insert_new_user(name, cursor)
+                insert_new_user(name, time, cursor)
 
 
 def main():
